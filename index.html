@@ -256,6 +256,17 @@ nav.tabs button:not(.active):hover{background:#EEF1F4;color:var(--ink)}
 </style>
 </head>
 <body>
+<script>
+/* Diagnostic: if the main script fails to load/parse, show why instead of failing silently */
+window.addEventListener('error',function(e){
+  var msg=(e&&(e.message||(e.error&&e.error.message)))||'unknown error';
+  var b=document.getElementById('errbar');
+  if(!b){b=document.createElement('div');b.id='errbar';
+    b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;background:#B23A34;color:#fff;padding:11px 14px;font:13px/1.45 -apple-system,system-ui,sans-serif;box-shadow:0 4px 12px rgba(0,0,0,.25)';
+    (document.body||document.documentElement).appendChild(b);}
+  b.textContent='⚠ The app couldn\u2019t start: '+msg+'. The uploaded index.html is likely incomplete \u2014 re-upload it as a file (don\u2019t paste it) and hard-refresh.';
+});
+</script>
 <div class="app">
   <header class="top">
     <div class="brand">
