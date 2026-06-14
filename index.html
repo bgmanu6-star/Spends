@@ -430,7 +430,7 @@ const ACCT_TYPES={bank:'Bank account',credit:'Credit card',paylater:'Pay Later',
 const ACCT_ICON={bank:'🏦',credit:'💳',paylater:'🕓',cash:'💵',wallet:'📲'};
 const PALETTE=['#1B6B58','#A87A12','#B23A34','#3A6EA5','#7A4FA3','#1A7F46','#C2643B','#4B7A86','#8A6D3B','#9A3B6E'];
 
-let DB=load();
+var DB=load();
 
 function seed(){
   const cats=[
@@ -730,7 +730,7 @@ function openModal(html){
 function closeModal(){document.getElementById('overlay').classList.remove('show');}
 
 /* ---- Transaction modal ---- */
-let txnType='expense';
+var txnType='expense';
 function openTxn(id,presetAcct){
   const t=id?DB.transactions.find(x=>x.id===id):null;
   txnType=t?t.type:'expense';
@@ -899,7 +899,7 @@ function delCategory(id){
 /* =========================================================
    IMPORT — SMS + CSV parsing
 ========================================================= */
-let pendingRows=[];
+var pendingRows=[];
 function num(s){return parseFloat(String(s).replace(/[, ]/g,''))||0;}
 
 function parseSMS(){
@@ -1050,7 +1050,7 @@ function wipeAll(){if(!confirm('Erase ALL data permanently? Download a backup fi
 ========================================================= */
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function emptyBlock(ic,t,p,action){return `<div class="empty"><div class="em-ic">${ic}</div><div style="font-weight:600;color:var(--ink);margin-bottom:4px">${t}</div><p>${p}</p>${action?`<button class="btn primary sm" onclick="${action}">Get started</button>`:''}</div>`;}
-let toastT;
+var toastT;
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),2200);}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
